@@ -1,0 +1,12 @@
+version: '2'
+services:
+  php72:
+    build:
+      dockerfile: docker/php72/Dockerfile
+      context: .
+    volumes:
+    - ./docker/php72/.composer:/root/.composer
+    - .:/var/www/dev-009
+    - ./docker/php72/.bash_history:/root/.bash_history
+    ports:
+    - 9005:80
