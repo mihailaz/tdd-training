@@ -3,7 +3,7 @@
  * @license Commerce License Jet Infosystems
  */
 
-namespace App\Exception;
+namespace App\Task1\Exception;
 
 /**
  * Class StringCalculatorException

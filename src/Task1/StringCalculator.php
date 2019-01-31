@@ -2,9 +2,9 @@
 /**
  * @license Commerce License Jet Infosystems
  */
-namespace App;
+namespace App\Task1;
 
-use App\Exception\StringCalculatorException;
+use App\Task1\Exception\StringCalculatorException;
 
 /**
  * Class StringCalculator

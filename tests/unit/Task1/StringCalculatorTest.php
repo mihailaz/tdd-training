@@ -2,10 +2,10 @@
 /**
  * @license Commerce License Jet Infosystems
  */
-namespace App\Tests\Unit;
+namespace Tests\Unit\Task1;
 
-use App\Exception\StringCalculatorException;
-use App\StringCalculator;
+use App\Task1\Exception\StringCalculatorException;
+use App\Task1\StringCalculator;
 
 /**
  * Class StringCalculatorTest
