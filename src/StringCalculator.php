@@ -21,14 +21,19 @@ class StringCalculator
      */
     public function add(string $str): int
     {
-        $delimiter = $this->parseHeader($str);
-        $str = str_replace("\n", ',', $str);
+        $delimiters = str_split($this->parseHeader($str));
+        $firstDelimiter = array_shift($delimiters);
 
-        if (preg_match('/\,{2,}/', $str)) {
+        if ($delimiters){
+            $str = str_replace($delimiters, $firstDelimiter, $str);
+        }
+        $quotedDelimiter = preg_quote($firstDelimiter, '/');
+
+        if (preg_match("/{$quotedDelimiter}{2,}/", $str)) {
             throw new StringCalculatorException('Invalid format');
         }
 
-        return array_reduce(explode(',', $str), [$this, 'addReduce'], 0);
+        return array_reduce(explode($firstDelimiter, $str), [$this, 'addReduce'], 0);
     }
 
     /**
@@ -36,23 +41,22 @@ class StringCalculator
      * @param string $n
      * @return int
      */
-    private function addReduce(int $r, string $n)
+    private function addReduce(int $r, string $n): int
     {
-//        $n = trim($n);
-//
-//        if ($n && !is_numeric($n)) {
-//            throw new \DomainException("Invalid number: {$n}");
-//        }
-
         return $r + (int)$n;
     }
 
-    private function parseHeader(&$str)
+    /**
+     * @param string $str
+     * @return string
+     */
+    private function parseHeader(string &$str): string
     {
-        if (!preg_match("#//.\n#", $str)) {
+        if (!preg_match("#//(.)\n(.*)#", $str, $matches)) {
             return ",\n";
         }
+        $str = $matches[2] ?? '';
 
-        return;
+        return $matches[1];
     }
 }

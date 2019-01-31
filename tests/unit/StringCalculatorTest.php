@@ -102,7 +102,6 @@ class StringCalculatorTest extends \Codeception\Test\Unit
     public function getMultipleNumbersData(): array
     {
         return [
-            ['1, 2',        3],
             ['2, 3, 4',     9],
             ['3, 4, 5, 6', 18],
         ];
@@ -142,6 +141,7 @@ class StringCalculatorTest extends \Codeception\Test\Unit
 
 // снова новое стребование: могут быть разные разделители
 // в первой строке указывается "//[delimiter]\n[numbers...]" например "//;\n1;2"
+// первая строка необязательна, все старые кейсы должны быть зелеными без их рефакторинга
 
     /**
      * @dataProvider getDelimiterOnHeaderData
@@ -166,7 +166,7 @@ class StringCalculatorTest extends \Codeception\Test\Unit
     }
 
 // todo: не читаемо, нужно каждое правило в отдельном тест кейсе, чтоб по имени теста понимать что пошло не так
-// не нужно думать наперед, вперед требований, итеративно, лениво, лучше парой
+// не нужно думать наперед, вперед требований, итеративно, лениво, лучше применяя парное программирование
 // шаблон имени тест кейса {MethodName}_{Input}_{Expected}
 // только 1 assert на тест
 
